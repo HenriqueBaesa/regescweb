@@ -2,11 +2,16 @@ package br.com.baesa.regescweb.dto;
 
 import br.com.baesa.regescweb.models.Professor;
 import br.com.baesa.regescweb.models.StatusProfessor;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
 public class RequisicaoNovoProfessor {
+    @NotBlank
     private String nome;
+    @NotNull
     private BigDecimal salario;
     private StatusProfessor statusProfessor;
 
