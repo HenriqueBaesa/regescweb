@@ -1,35 +1,10 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragmentos :: head('Novo professor')}"></head>
+
 <body>
 <header th:replace="~{fragmentos :: header('Cadastrar Professor', '/professores/new')}"></header>
-<div class="container mt-4">
-    <div class="row">
-        <form th:object="${requisicaoFormProfessor}" action="/professores" method="POST">
-            <div class="mb-3">
-                <label class="form-label">Nome do Professor</label>
-                <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}">
-                <div class="invalid-feedback" th:errors="*{nome}"></div>
-
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Salário</label>
-                <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salario}">
-                <div class="invalid-feedback" th:errors="*{salario}"></div>
-                <div></div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Status</label>
-                <select class="form-select" th:field="*{statusProfessor}">
-                    <option th:each="status : ${listaStatusProfessor}"
-                            th:value="${status}" th:text="${status}"></option>
-                </select>
-            </div>
-            <button class="btn btn-primary" type="submit">Submeter</button>
-            <a href="javascript:history.back()">Voltar</a>
-        </form>
-    </div>
-</div>
+<div th:replace="~{professores/fragmentos :: form(requisicaoFormProfessor, '/professores')}">Formulário</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

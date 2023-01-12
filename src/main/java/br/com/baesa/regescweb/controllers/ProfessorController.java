@@ -109,4 +109,16 @@ public class ProfessorController {
 
         return new ModelAndView("redirect:/professores/" + professor.getId());
     }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable Long id){
+
+        Optional<Professor> optional = this.professorRepository.findById(id);
+        if (optional.isPresent() == false){
+            return "redirect:/professores";
+        }
+
+        this.professorRepository.deleteById(id);
+        return "redirect:/professores";
+    }
 }
