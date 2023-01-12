@@ -1,11 +1,11 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragmentos :: head('Novo professor')}"></head>
+<head th:replace="~{fragmentos :: head('Editar professor')}"></head>
 <body>
-<header th:replace="~{fragmentos :: header('Cadastrar Professor', '/professores/new')}"></header>
+<header th:replace="~{fragmentos :: header('Editar Professor ' + ${professorId}, '/professores/' + ${professorId} + '/edit')}"></header>
 <div class="container mt-4">
     <div class="row">
-        <form th:object="${requisicaoFormProfessor}" action="/professores" method="POST">
+        <form th:object="${requisicaoFormProfessor}" th:action="@{/professores/{professorId}(professorId = ${professorId})}" method="POST">
             <div class="mb-3">
                 <label class="form-label">Nome do Professor</label>
                 <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}">
