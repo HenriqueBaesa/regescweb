@@ -111,14 +111,19 @@ public class ProfessorController {
     }
 
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Long id){
+    public ModelAndView delete(@PathVariable Long id){
+        ModelAndView mv = new ModelAndView("redirect:/professores");
 
         Optional<Professor> optional = this.professorRepository.findById(id);
         if (optional.isPresent() == false){
-            return "redirect:/professores";
+            mv.addObject("mensagem", "Cadastro não encontrado.");
+            mv.addObject("erro", true);
+            return mv;
         }
 
         this.professorRepository.deleteById(id);
-        return "redirect:/professores";
+        mv.addObject("mensagem", "Deletado com sucesso!");
+        mv.addObject("erro", false);
+        return mv;
     }
 }
